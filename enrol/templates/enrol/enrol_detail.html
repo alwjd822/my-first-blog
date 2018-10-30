@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}enrol_detail{% endblock %}
+{% load staticfiles %}
+{% block content %}
+<!-- 신청 -->
+<div class="text" align="center"><br><br>
+	<p><strong>클래스 이름; </strong><br>{{ course.cname }}</p><br>
+	<p><strong>비용; </strong><br>30,000</p><br>
+	<p><strong>날짜 및 시간; </strong><br>2018-05-14 13:00</p><br>
+	<p><strong>결제수단; </strong></p>
+	<form>  
+  	<input type="radio" name="pay" value="female" checked="checked"> 신용카드 &nbsp&nbsp&nbsp&nbsp
+  	<input type="radio" name="pay" value="male"> 무통장 입금 &nbsp&nbsp&nbsp&nbsp
+  	<input type="radio" name="pay" value="male"> 카카오페이 &nbsp&nbsp&nbsp&nbsp<br>
+  	<br>
+	<br>
+	<a href="#" class="btn btn-default" role=button> 취소 </a>
+	<a href="#" class="btn btn-primary" role=button>결제</a>
+</div>
+{% endblock %}

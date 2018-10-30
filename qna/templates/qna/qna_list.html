@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block title %}qna_list{% endblock %}
+
+{% block content %}	
+	<!-- tap -->
+	<div class="container">
+		
+		<div class="row">
+		<div>
+
+	  <!-- Nav tabs -->
+	  <ul class="nav nav-tabs" role="tablist">
+	    <li role="presentation" class="active"><a href="#notice" aria-controls="notice" role="tab" data-toggle="tab">Q&amp;A</a></li>
+	  </ul>
+
+	  <!-- Tab panes -->
+	  <div class="tab-content" style="width: 1000px;">
+	    <div role="tabpanel" class="tab-pane active" id="notice">
+	    	<!-- 공지 -->
+	    	<br>
+	    	<div class="container">
+	    	<table class="table table-hover">
+	    	  <thead>
+	    	  	<tbody>
+	    	    <tr>
+	    	      <th scope="col">#</th>
+	    	      <th scope="col">제목</th>
+	    	      <th scope="col">작성자</th>
+	    	      <th scope="col">작성일자</th>
+	    	    </tr>
+	    		</tbody>
+	    	  </thead>
+	    	  {% for qna in object_list %}
+	    	  <tbody>
+	    	    <tr>
+	    	      <th scope="row">{{ qna.id }}</th>
+	    	      <td><a href="{% url 'qna:detail' qna.id %}">{{ qna.title }}</a></td>
+	    	      <td>{{ qna.owner }}</td>
+	    	      <td>{{ qna.createdate|date:"Y-n-d H:m:s" }}</td>
+	    	    </tr>
+	    	  </tbody>
+	    	  {% endfor %}
+	    	</table>
+	    	<div class="text-center">
+					{% if is_paginated %}
+					<ul class="pagination" style="display: inline-block">
+						{% if page_obj.has_previous %}
+							<li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+						{% else %}
+							<li class="disabled"><span>&laquo;</span></li>
+						{% endif %}
+						{% for i in paginator.page_range %}
+							{% if page_obj.number == i %}
+								<li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+							{% else %}
+								<li><a href="?page={{ i }}">{{ i }}</a></li>
+							{% endif %}
+						{% endfor %}
+						{% if page_obj.has_next %}
+							<li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+						{% else %}
+							<li class="disabled"><span>&raquo;</span></li>
+						{% endif %}
+					</ul>
+					{% endif %}
+					</div>
+	    	</div>
+	    </div>
+
+	    	<div class="text-center">
+	    		<ul class="pagination">
+	    			<li><a href="{% url 'qna:add' %}">글쓰기</a></li>
+	    		</ul>
+	    	</div>
+	    </div>
+
+	  </div>
+	</div>
+	</div>
+	
+	</div>
+{% endblock %}

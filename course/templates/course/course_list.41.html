@@ -1,0 +1,274 @@
+{% extends "base.html" %}
+
+{% block title %}course_list{% endblock %}
+{% load staticfiles %}
+{% block content %}
+<style> 
+    input[type=text] {
+        width: 275px;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+        background-color: white;
+        background-image: url('https://images.vexels.com/media/users/3/132068/isolated/preview/f9bb81e576c1a361c61a8c08945b2c48-search-icon-by-vexels.png');
+        background-size: 22px 22px;
+        background-position: 10px 10px; 
+        background-repeat: no-repeat;
+        padding: 12px 20px 12px 40px;
+        -webkit-transition: width 0.4s ease-in-out;
+        transition: width 0.4s ease-in-out;
+    }
+
+    input[type=text]:focus {
+        width: 100%;
+    }
+    </style>
+    <style type="text/css">
+       .btn-Success{
+            border: 2px solid black;
+            background-color: white;
+            color: black;
+            padding: 13px 25px;
+            font-size: 15px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
+
+     <div class="container-fluid">
+        <h3 class="htitle">
+        <select class="form-control pull-right" name="sort-select" id="sort-select" onchange="location = this.value;" required style="width: 120px;"> 
+            <option class="sort-date" value="?sort-date">최신순</option>
+            <option class="sort-likes" value="?sort=likes">좋아요순</option>
+            {% if user.is_authenticated %}
+            <option class="sort-mypost" value="?sort=mypost">내가쓴글</option>
+            {% endif %}
+            <option class="sort-high_cost" value="?sort=high_cost">높은가격순</option>
+            <option class="sort-low_cost" value="?sort=low_cost">낮은가격순</option>
+            
+            <br>
+
+
+        <script type="text/javascript">
+            // get url query string
+            var getUrlParameter = function getUrlParameter(sParam) {
+                var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+                    sURLVariables = sPageURL.split('&'),
+                    sParameterName,
+                    i;
+
+                for (i = 0; i < sURLVariables.length; i++) {
+                    sParameterName = sURLVariables[i].split('=');
+
+                    if (sParameterName[0] === sParam) {
+                        return sParameterName[1] === undefined ? true : sParameterName[1];
+                    }
+                }
+            };
+            // 정렬방식 셀렉트 박스 유지
+            $(document).ready(function(){
+            var sort = getUrlParameter('sort');
+            if(sort == 'likes'){
+                $('.sort-likes').prop('selected', 'selected')
+            }else if(sort == 'mypost'){
+                $('.sort-mypost').prop('selected', 'selected')
+            }else if(sort == 'high_cost'){
+                $('.sort-high_cost').prop('selected', 'selected')
+            }else if(sort == 'low_cost'){
+                $('.sort-low_cost').prop('selected', 'selected')
+            }else{
+                $('.sort-date').prop('selected', 'selected')
+            }
+            });
+            </script>
+        </select>
+        
+    </h3>
+    <br>
+
+    <style>
+        .filterDiv {
+          float: left;
+          background-color: #eee;
+          color: #000;
+          width: 120px;
+          line-height: 70px;
+          text-align: center;
+          margin: 2px;
+          display: none;
+          font-size: 14px;
+        }
+        
+        .show {
+          display: block;
+        }
+        
+        .container1 {
+          margin-top: 20px;
+          overflow: hidden;
+        }
+        
+        /* Style the buttons */
+        .btn1 {
+          border: none;
+          outline: none;
+          padding: 12px 16px;
+          background-color: #f1f1f1;
+          cursor: pointer;
+        }
+        .container1 > .filterDiv{
+            cursor: pointer;
+        }
+        .container1 > .filterDiv.active{
+            background-color: #ffaaaa;
+            color: rgb(255, 255, 255);
+        }
+        </style>
+
+
+<div class="container1">
+    <div class="filterDiv food" OnClick="location.href ='/course/sfield/40/'">한식</div>
+    <div class="filterDiv food active" OnClick="location.href ='/course/sfield/41/'">양식</div>
+    <div class="filterDiv food" OnClick="location.href ='/course/sfield/42/'">일/중식</div>
+    <div class="filterDiv food" OnClick="location.href ='/course/sfield/43/'">해외음식</div>
+    <div class="filterDiv food" OnClick="location.href ='/course/sfield/44/'">베이킹/디저트</div>
+    <div class="filterDiv food" OnClick="location.href ='/course/sfield/45/'">바리스타</div>
+    <div class="filterDiv food" OnClick="location.href ='/course/sfield/46/'">푸드 기타</div>
+</div>
+
+<script>
+filterSelection("all")
+function filterSelection(c) {
+  var x, i;
+  x = document.getElementsByClassName("filterDiv");
+  if (c == "all") c = "";
+  for (i = 0; i < x.length; i++) {
+    w3RemoveClass(x[i], "show");
+    if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
+  }
+}
+
+
+function w3AddClass(element, name) {
+  var i, arr1, arr2;
+  arr1 = element.className.split(" ");
+  arr2 = name.split(" ");
+  for (i = 0; i < arr2.length; i++) {
+    if (arr1.indexOf(arr2[i]) == -1) {element.className += " " + arr2[i];}
+  }
+}
+
+function w3RemoveClass(element, name) {
+  var i, arr1, arr2;
+  arr1 = element.className.split(" ");
+  arr2 = name.split(" ");
+  for (i = 0; i < arr2.length; i++) {
+    while (arr1.indexOf(arr2[i]) > -1) {
+      arr1.splice(arr1.indexOf(arr2[i]), 1);     
+    }
+  }
+  element.className = arr1.join(" ");
+}
+
+// Add active class to the current button (highlight it)
+var btnContainer = document.getElementById("myBtnContainer");
+var btns = btnContainer.getElementsByClassName("nav-item");
+for (var i = 0; i < btns.length; i++) {
+  btns[i].addEventListener("click", function(){
+    var current = document.getElementsByClassName("active");
+    current[0].className = current[0].className.replace(" active", "");
+    this.className += " active";
+  });
+}
+</script>
+
+
+
+
+
+        <hr>
+        <p>
+            <form action="" method="get">
+                <input type="text" name="q" placeholder="검색어를 입력해주세요." value="{{ q }}" />
+            </form>
+        </p>
+        {% if object_list %}
+        <div class=bs-example data-example-id=thumbnails-with-custom-content > 
+            <div class=row> 
+                {% for course in object_list %}
+                <div class="col-sm-4 col-md-3"> 
+                    <div class=thumbnail> <img src="{{ course.image.thumb_url }}" >
+                     
+                        <div class=caption> 
+                            <h5>{{ course.cname|slice:":13" }}</h5> 
+                            <br>
+                            <p>강사명; {{ course.name }}</p> 
+                            <p>장소; {{ course.place|slice:":18" }}</p>
+                            <p>가격; {{ course.cost }}원</p>
+                            <p><br>
+                                <a href="{% url 'course:lecturer' course.pk %}" class="btn btn-primary" role=button>강사소개</a>
+                                <a href="{% url 'course:course_detail' course.id %}" class="btn btn-default" role=button>자세히</a>
+                            </p> 
+                        </div> 
+                        
+                    </div> 
+                </div>
+                {% endfor %}               
+            </div>
+
+            {% elif sort == 'likes' %}
+            <div class=row>
+            {% for course in object_list %}
+                <div class="col-sm-4 col-md-3"> 
+                    <div class=thumbnail> <img src="{{ course.image.thumb_url }}" >
+                     
+                        <div class=caption> 
+                            <h4>{{ course.cname }}</h4> 
+                            <br>
+                            <p>강사명; {{ course.name }}</p> 
+                            <p>장소; {{ course.place }}</p>
+                            <p>가격; {{ course.cost }}원</p>
+                            <p><br>
+                                <a href="{% url 'lecturer:lecturer' course.id %}" class="btn btn-primary" role=button>강사소개</a>
+                                <a href="{% url 'course:course_detail' course.id %}" class="btn btn-default" role=button>자세히</a>
+                                <a style="color: #000000;">♥{{ like_count }}</a>
+                            </p> 
+                        </div> 
+                        
+                    </div> 
+                </div>
+                {% endfor %}
+            </div>
+            
+            
+            {% elif not object_list %}
+            <b><i>"{{ q }}"를 찾을 수 없습니다.</i></b>
+            {% endif %}
+        
+            <div class="text-center">
+                {% if is_paginated %}
+                <ul class="pagination" style="display: inline-block">
+                  {% if page_obj.has_previous %}
+                    <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+                  {% else %}
+                    <li class="disabled"><span>&laquo;</span></li>
+                  {% endif %}
+                  {% for i in paginator.page_range %}
+                    {% if page_obj.number == i %}
+                      <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                    {% else %}
+                      <li><a href="?page={{ i }}">{{ i }}</a></li>
+                    {% endif %}
+                  {% endfor %}
+                  {% if page_obj.has_next %}
+                    <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+                  {% else %}
+                    <li class="disabled"><span>&raquo;</span></li>
+                  {% endif %}
+                </ul>
+                {% endif %}
+            </div>
+        </div>       
+    </div>
+{% endblock %}    

@@ -1,0 +1,97 @@
+{% extends "accounts/mypage_base.html" %}
+
+{% block title %}course_change_list{% endblock %}
+{% load staticfiles %}
+{% block mypage %}
+	<link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.30/css/uikit.min.css'>
+
+	<style type="text/css">
+		@import url(http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css);
+		/*body{
+			margin-top:20px;
+		}*/
+		.fa-fw {
+			width: 2em;
+		}
+		.container {
+			margin-left: 10px;
+		}
+		.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+			background-color: #fff;
+			color: #ffaaaa;
+			font-weight: bold;
+		}
+		.uk-link, a {
+			color: black;
+		}
+	</style>
+	<!-- pagination -->
+	<style type="text/css">
+		.pagination>li>a, .pagination>li>span { border-radius: 50% !important;margin: 0 5px;}
+	</style>
+	
+<!-- siedmenu -->
+	
+	        
+	        <div class="col-md-10 well" style="background-color: #fff;">
+	            <!-- <div class="container"> -->
+	            <table class="table table-hover">
+	              <thead>
+	              	<tbody>
+	                <tr>
+	                  <th scope="col">클래스명</th>
+                  <th scope="col">가격</th>
+				  <th scope="col">장소</th>
+                  <th scope="col">수정</th>
+                  <th scope="col">삭제</th>
+	                </tr>
+	            	</tbody>
+	              </thead>
+	              
+	              {% for item in object_list %}
+              <tbody>
+                <tr>
+				  <th scope="row"><a href="{% url 'course:course_detail' item.id %}">{{ item.cname }}</a></th>
+                  <td>{{ item.cost }}</td>
+				  <td>{{ item.place }}</td>
+                  <td><a href="{% url 'course:update' item.id %}">수정</a></td>
+                  <td><a href="{% url 'course:delete' item.id %}">삭제</a></td>
+                </tr>
+              </tbody>
+              {% endfor %}
+	            </table>
+	            <div class="text-center">
+                {% if is_paginated %}
+                <ul class="pagination" style="display: inline-block">
+                  {% if page_obj.has_previous %}
+                    <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+                  {% else %}
+                    <li class="disabled"><span>&laquo;</span></li>
+                  {% endif %}
+                  {% for i in paginator.page_range %}
+                    {% if page_obj.number == i %}
+                      <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                    {% else %}
+                      <li><a href="?page={{ i }}">{{ i }}</a></li>
+                    {% endif %}
+                  {% endfor %}
+                  {% if page_obj.has_next %}
+                    <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+                  {% else %}
+                    <li class="disabled"><span>&raquo;</span></li>
+                  {% endif %}
+                </ul>
+                {% endif %}
+                </div>
+	            </div>
+	        </div> 
+			
+	    </div>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script src="js/bootstrap.js"></script>
+	<!--  -->
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.30/js/uikit.min.js'></script>
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.30/js/uikit-icons.min.js'></script>
+{% endblock %}

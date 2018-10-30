@@ -1,0 +1,24 @@
+{% extends "accounts/mypage_base.html" %}
+
+{% block title %}lecturer_confirm_delete{% endblock %}
+
+{% block mypage %}
+<!-- <div class="container">
+<div class="row">  -->
+<div class="col-md-9 well" style="background-color: #fff;">
+<div id="content">
+
+    <!--<h1>강사정보삭제</h1>-->
+
+    <form action="" method="post">{% csrf_token %}
+        <p>강사 정보를 삭제하면 등록되어 있는 클래스 정보까지 모두 삭제됩니다.</p>
+        <p>그래도 삭제하시겠습니까?</p>
+        <input class="btn btn-default" type="submit" value="삭제" />
+        &nbsp;&nbsp;<a class="" href="{% url 'accounts:profile' %}" role=button>취소</a>
+    </form>
+
+</div>
+</div>
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+
+{% block title %}lecturer_detail{% endblock %}
+{% load staticfiles %}
+{% load imagekit %}
+{% block content %}
+<style type="text/css">
+	.jumbotron{
+		background-image: url('images/main.jpg');
+		background-size: cover;
+		color: white;
+	}
+	.btn-primary {
+		color: #fff;
+		background-color: #ffaaaa;
+		border-color: #ffaaaa;
+		border-bottom-color: #ffaaaa;
+		border-top-color: #ffaaaa;
+		border-right-color: #ffaaaa;
+		border-left-color: #ffaaaa;
+	}
+	.btn-primary:hover {
+		color: #fff;
+		background-color: #FF9090;
+		border-color: #FF9090;
+		border-bottom-color: #FF9090;
+		border-top-color: #FF9090;
+		border-right-color: #FF9090;
+		border-left-color: #FF9090;
+	}
+</style>
+
+<style type="text/css">
+	.panel-primary > .panel-heading {
+		color: #fff;
+		background-color: ffaaaa;
+		border-color: ffaaaa;
+	}
+</style>
+
+<style type="text/css">
+	blockquote {
+		background: #f9f9f9;
+		border-left: 10px solid #cccccc;
+		margin: 1.5em 10px;
+		padding: 0.8em 10px;
+		quotes: "\201C""\201D""\2018""\2019";
+	}
+	blockquote:before {
+		color: #cccccc;
+		content: open-quote;
+		font-size: 2em;
+		line-height: 0.1em;
+		margin-left: 0.25em;
+		vertical-align: -0.4em;
+	}
+	blockquote:after {
+		color: #cccccc;
+		content: close-quote;
+		font-size: 2em;
+		line-height: 0.1em;
+		margin-left: 0.25em;
+		vertical-align: -0.4em;
+	}
+</style>
+
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="panel-title">
+						<span class="glyphicon glyphicon-tags"></span>
+						&nbsp;&nbsp;{{ course.name }} 강사
+					</h3>
+				</div>
+				<div class="panel-body">
+					<div class="media">
+						<div class="media-left">
+							<a href="#">
+								<img class="media-odject" src="{{ course.name.profilephoto.thumb_url }}" style="width: 200px;">
+							</a>
+						</div>
+						<div class="media-body">
+							<h4 class="media-heading">{{ course.name }}</h4><br>
+							{% for lecturer in course.lecturer_set.all %}
+
+							< 경력 사항 >{{ lecturer.career }}
+							<br><br>
+							< 자격증 >{{ lecturer.certification }}
+
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+				<table class="table">
+					<thead>
+						<tr>
+							<th>강의 번호</th>
+							<th>강의 제목</th>
+							<th>강사명</th>
+							<th>등록 날짜</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for lecturer in course.lecturer_set.all %}
+						<tr>
+							<td>1</td>
+							<td><a href="class.html">{{ lecturer.course.cname }}</a></td>
+							<td>{{ lecturer.name }}</td>
+							<td>2018-05-10</td>
+						</tr>
+						{% endfor %}
+						<tr>
+							<td>2</td>
+							<td><a href="class.html">재미있는 제과제빵</a></td>
+							<td>이채린</td>
+							<td>2018-05-12</td>
+						</tr>
+						<tr>
+							<td>3</td>
+							<td><a href="classdetail.html">재미있는 베이킹</a></td>
+							<td>이채린</td>
+							<td>2018-05-14</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="panel-footer">
+					<blockquote>&nbsp;&nbsp;+one and olny+</blockquote>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %} 

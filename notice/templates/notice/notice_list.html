@@ -1,0 +1,155 @@
+{% extends "base.html" %}
+
+{% block title %}notice_list.html{% endblock %}
+
+{% block content %}	
+	<!-- tap -->
+	<div class="container">
+		
+		<div class="row" >
+		<div>
+
+	  <!-- Nav tabs -->
+	  <ul class="nav nav-tabs" role="tablist">
+	    <li role="presentation" class="active"><a href="#notice" aria-controls="notice" role="tab" data-toggle="tab">공지사항</a></li>
+	    <li role="presentation"><a href="#faq" aria-controls="faq" role="tab" data-toggle="tab">FAQ</a></li>
+	    
+	  </ul>
+
+	  <!-- Tab panes -->
+	  <div class="tab-content" style="width: 1000px;">
+	    <div role="tabpanel" class="tab-pane active" id="notice">
+	    	<!-- 공지 -->
+	    	<br>
+	    	<div class="container">
+	    	<table class="table table-hover">
+	    	  <thead>
+	    	  	<tbody>
+	    	    <tr>
+	    	      <th scope="col">#</th>
+	    	      <th scope="col">제목</th>
+	    	      <th scope="col">작성자</th>
+	    	      <th scope="col">작성일자</th>
+	    	    </tr>
+	    		</tbody>
+	    	  </thead>
+	    	  {% for notice in object_list %}
+	    	  <tbody>
+	    	    <tr>
+	    	      <th scope="row">{{ notice.id }}</th>
+	    	      <td><a href="{% url 'notice:notice_detail' notice.id %}">{{ notice.nname }}</a></td>
+	    	      <td>HOBBYIST</td>
+	    	      <td>{{ notice.published_date }}</td>
+	    	    </tr>
+	    	  </tbody>
+	    	  {% endfor %}
+	    	</table>
+	    	<div class="text-center">
+						<div class="text-center">
+							{% if is_paginated %}
+							<ul class="pagination" style="display: inline-block">
+								{% if page_obj.has_previous %}
+									<li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+								{% else %}
+									<li class="disabled"><span>&laquo;</span></li>
+								{% endif %}
+								{% for i in paginator.page_range %}
+									{% if page_obj.number == i %}
+										<li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+									{% else %}
+										<li><a href="?page={{ i }}">{{ i }}</a></li>
+									{% endif %}
+								{% endfor %}
+								{% if page_obj.has_next %}
+									<li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+								{% else %}
+									<li class="disabled"><span>&raquo;</span></li>
+								{% endif %}
+							</ul>
+							{% endif %}
+							</div>
+	    	</div>
+	    	</div>
+	    </div>
+	    <div role="tabpanel" class="tab-pane" id="faq">
+	    	<!-- FAQ -->
+	    	<br>
+	    	<div class="container">
+	    	<table class="table table-hover">
+	    	  <thead>
+	    	  	<tbody>
+	    	    <tr>
+	    	      <th scope="col">#</th>
+	    	      <th scope="col">제목</th>
+	    	      <th scope="col">작성자</th>
+	    	      <th scope="col">작성일자</th>
+	    	    </tr>
+	    		</tbody>
+	    	  </thead>
+	    	  <tbody>
+	    	  	<tr>
+	    	      <th scope="row">6</th>
+	    	      <td>환불은 언제 처리되나요?</td>
+	    	      <td>HOBBYIST</td>
+	    	      <td>2018-05-11</td>
+	    	    </tr>
+	    	  	<tr>
+	    	  	  <th scope="row">5</th>
+	    	  	  <td>현장에서 결제할 수 있나요?</td>
+	    	  	  <td>HOBBYIST</td>
+	    	  	  <td>2018-05-11</td>
+	    	  	</tr>
+	    	    <tr>
+	    	      <th scope="row">4</th>
+	    	      <td><a href="faqdetail.html">회원 탈퇴는 어떻게 하나요?</a></td>
+	    	      <td>HOBBYIST</td>
+	    	      <td>2018-05-11</td>
+	    	    </tr>
+	    	    <tr>
+	    	      <th scope="row">3</th>
+	    	      <td>비밀번호를 잊어버렸는데 어떻게 찾나요?</td>
+	    	      <td>HOBBYIST</td>
+	    	      <td>2018-05-10</td>
+	    	    </tr>
+	    	    <tr>
+	    	      <th scope="row">2</th>
+	    	      <td>비회원도 이용할 수 있나요?</td> 
+	    	      <td>HOBBYIST</td>
+	    	      <td>2018-05-05</td>
+	    	    </tr>
+	    	    <tr>
+	    	      <th scope="row">1</th>
+	    	      <td>하비스트는 어떻게 이용하나요?</td>
+	    	      <td>HOBBYIST</td>
+	    	      <td>2018-05-01</td>
+	    	    </tr>
+	    	  </tbody>
+	    	</table>
+	    	<div class="text-center">
+	    		<ul class="pagination">
+							{% if is_paginated %}
+							{% if page_obj.has_previous %}
+							<li><a href="?page={{ page_obj.previous_page_number }}">이전</a></li>
+							{% endif %}
+							<li><a>{{ page_obj.number }}페이지</a></li>
+							{% if page_obj.has_next %}
+							<li><a href="?page={{ page_obj.next_page_number }}">다음</a></li>
+							{% endif %}
+							{% else %}
+	    				<li><a href="#">1페이지</a></li>
+					{% endif %}
+	    		</ul>
+	    	</div>
+	    	</div>
+	    </div>
+
+	    
+	    </div>
+
+	  </div>
+	</div>
+	</div>
+	
+	</div>
+{% endblock %}
+	

@@ -1,0 +1,86 @@
+{% extends "accounts/mypage_base.html" %}
+
+{% block title %}profile_change_form{% endblock %}
+
+{% load staticfiles %}
+{% block mypage %}
+    <title>회원정보수정</title>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src='{% static "js/bootstrap.js" %}'></script>
+    <style type="text/css">
+        .btn-primary {
+            color: #ffaaaa;
+            background-color: #fff;
+            border-color: #ffaaaa;
+        }
+        .btn-primary:hover, .btn-primary:focus, .btn-primary.focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
+            color: #fff;
+            background-color: #ffaaaa;
+            border-color: #ffaaaa;
+        }
+    </style>
+
+
+<!-- <div class="container"> 
+    <div class="row"> -->
+            
+<div class="col-md-9 well" style="background-color: #fff;">
+<form action="" method="post" style="text-align: center;">
+    {% csrf_token %}
+     <fieldset class="table table-border" style="text-align: center;">
+        <table class="table table-border table-hover" style="text-align: center;">
+        <thead>
+            <tr>
+            <th colspan="3" style="text-align: center;"><h4>회원정보수정</h4></th>
+            </tr>
+        </thead>
+        <tbody>
+        
+            <tr>
+                <div class="form-row">
+                <td style="width: 110px;"><h5>ID</h5></td>
+                <td style="text-align:left;">{{ user }}</td>
+                </div>
+            </tr>
+            
+            <tr>
+            <div class="form-row">
+                <td style="width: 110px;"><h5>이름</h5></td>
+                <td style="text-align:left">{{ user.profile.name }}</td>        
+            </div>
+            </tr>
+            
+            <tr>
+            <div class="form-row">
+                <td style="width: 110px;"><h5>전화번호</h5></td>
+                <td colspan="2"><input class="form-control" type="text" id="tel" name="tel" placeholder="전화번호를 입력해주세요." {{ form.tel }}</td>
+            </div>
+            </tr>
+    
+            <tr>
+            <div class="form-row">
+                <td style="width: 110px;"><h5>주소</h5></td>
+                <td colspan="2"><input class="form-control" type="text" id="address" name="address" placeholder="주소를 입력해주세요." {{ form.address }}</td>
+            </div> 
+            </tr>
+            
+            <tr>
+            <div class="form-row">
+                <td style="width: 110px;"><h5>생년월일</h5></td>
+                <td style="text-align:left">{{ user.profile.birth }}</td>        
+            </div> 
+            </tr>
+            
+        </tbody>
+        </table>
+        </fieldset>
+        <br>
+        <input class="btn btn-primary form-control" style="width: 20%;" type="submit" name="수정하기" value="수정하기">
+        <a href="{% url 'accounts:delete'  user.profile.id  %}" class="btn btn-default" role=button>탈퇴</a>
+        <a class="pull-right" href="{% url 'accounts:profile' %}" role=button>취소</a>
+
+</form>
+</div>
+</div>
+</div>
+{% endblock %}

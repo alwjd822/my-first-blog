@@ -1,0 +1,187 @@
+{% extends "base.html" %}
+
+{% block title %}sitemap.html{% endblock %}
+{% load staticfiles %}
+{% block content %}
+<!-- 사이트맵 -->
+<style type="text/css">
+		body, html, div {
+		    font-family: 'nanumgothic', 'Nanum Gothic', '나눔 고딕';
+		    margin: auto;
+		    
+		    font-smoothing: antialiased;
+		    -webkit-font-smoothing: antialiased;
+		    -moz-osx-font-smoothing: grayscale;
+		}
+
+		a:link {
+		    text-decoration: none;
+		    color: #252525;
+		}
+
+		a:visited {
+		    text-decoration: none;
+		    color: #252525;
+		}
+
+		a:hover {
+		    text-decoration: none;
+		    color: #252525;
+		}
+
+		a:active {
+		    text-decoration: none;
+		    color: #252525;
+		}
+
+	</style>
+	<style type="text/css">
+		#sitemap>ul{display:table;table-layout:fixed;width:104%;margin-left:-4%}
+		#sitemap>ul+ul{margin-top:40px}
+		#sitemap>ul>li{
+			display:table-cell;
+			padding-left:4%
+		}
+		#sitemap>ul>li>a{
+			display:block;
+			padding:10px 15px;
+			border-top:1px solid #ffaaaa;border-bottom:1px solid #FFC6C6;
+			font-size:18px;font-weight:600;color:#ff9090;letter-spacing:-1px;line-height:1.2em
+		}
+		#sitemap>ul>li:hover>a{
+			background:#ffaaaa; /*url(../img/etc/sitemap_bg.png) no-repeat right center;*/
+			color:#fff
+		}
+		#sitemap>ul>li>ul>li{
+			border-top:1px solid #eee;
+			padding:12px 15px 10px;
+		}
+		#sitemap>ul>li>ul>li:first-child{border-top:0}
+		#sitemap>ul>li>ul>li>a{
+			font-size:15px;font-weight:600;color:#666;letter-spacing:-1px;line-height:1.1em
+		}
+		#sitemap>ul>li>ul>li:hover>a{color:#ffaaaa}
+		#sitemap>ul>li>ul ul{padding:10px 0 0 5px}
+		#sitemap>ul>li>ul ul li{
+			padding:0 0 5px 12px;
+			/*background:url(../img/etc/sitemap_dot.png) no-repeat 0 6px;*/
+		}
+		#sitemap>ul>li>ul ul li a{font-size:13px;color:#666;letter-spacing:-1px}
+		#sitemap>ul>li>ul ul li a:hover{color:#ff9090;text-decoration:underline}
+		/*#top>span a.sitemap{background-image:url(../img/common/top4.png)}*/
+	</style>
+</head>
+<body>
+	<script type="text/javascript">
+
+	    title="사이트맵";
+
+	</script>
+	<article>
+	    <div id="sitemap">
+	  <ul>
+	    <li>
+	      <a href="#">메뉴</a>
+	      <ul id="sitemap_721">
+	        <li>
+	          <a href="{% url 'course:index' %}">전체</a>
+	        </li>
+	        <li>
+	          <a href="category.html?categoryName=music">음악</a>
+	          <ul id="sitemap_726">
+	            <li><a href="category.html?categoryName=music">작사/작곡</a></li>
+	            <li><a href="category.html?categoryName=music">보컬/랩</a></li>
+	            <li><a href="category.html?categoryName=music">피아노</a></li>
+	            <li><a href="category.html?categoryName=music">기타</a></li>
+	            <li><a href="category.html?categoryName=music">전통 악기</a></li>
+	            <li><a href="category.html?categoryName=music">악기 기타</a></li>
+	            <li><a href="category.html?categoryName=music">음악 기타</a></li>
+	          </ul>
+	        </li>
+	        <li><a href="category.html?categoryName=art">미술</a>
+	        	<ul>
+	        		<li><a href="category.html?categoryName=art">공예</a></li>
+	        		<li><a href="category.html?categoryName=art">회화</a></li>
+	        		<li><a href="category.html?categoryName=art">만화</a></li>
+	        		<li><a href="category.html?categoryName=art">캘리그라피</a></li>
+	        		<li><a href="category.html?categoryName=art">디자인</a></li>
+	        		<li><a href="category.html?categoryName=art">미술 기타</a></li>
+	        	</ul>
+	        </li>
+	        <li><a href="category.html?categoryName=sports">운동</a>
+	        	<ul>
+	        		<li><a href="category.html?categoryName=sports">댄스</a></li>
+	        		<li><a href="category.html?categoryName=sports">요가</a></li>
+	        		<li><a href="category.html?categoryName=sports">홈트레이닝</a></li>
+	        		<li><a href="category.html?categoryName=sports">필라테스</a></li>
+	        		<li><a href="category.html?categoryName=sports">수영</a></li>
+	        		<li><a href="category.html?categoryName=sports">스케이트/보드</a></li>
+	        		<li><a href="category.html?categoryName=sports">운동 기타</a></li>
+	        	</ul>
+	        </li>
+	        <li><a href="category.html?categoryName=food">푸드</a>
+	        	<ul>
+	        		<li><a href="category.html?categoryName=food">한식</a></li>
+	        		<li><a href="category.html?categoryName=food">양식</a></li>
+	        		<li><a href="category.html?categoryName=food">일/중식</a></li>
+	        		<li><a href="category.html?categoryName=food">해외 음식</a></li>
+	        		<li><a href="category.html?categoryName=food">베이킹/디저트</a></li>
+	        		<li><a href="category.html?categoryName=food">바리스타</a></li>
+	        		<li><a href="category.html?categoryName=food">푸드 기타</a></li>
+	        	</ul>
+	        </li>
+	        <li><a href="category.html?categoryName=digital">디지털</a>
+	        	<ul>
+	        		<li><a href="category.html?categoryName=digital">컴퓨터/프로그래밍</a></li>
+	        		<li><a href="category.html?categoryName=digital">카메라/사진</a></li>
+	        		<li><a href="category.html?categoryName=digital">디지털 기타</a></li>
+	        	</ul>
+	        </li>
+	        <li><a href="category.html?categoryName=beauty">뷰티</a>
+	        	<ul>
+	        		<li><a href="category.html?categoryName=beauty">헤어</a></li>
+	        		<li><a href="category.html?categoryName=beauty">메이크업</a></li>
+	        		<li><a href="category.html?categoryName=beauty">네일아트</a></li>
+	        		<li><a href="category.html?categoryName=beauty">피부관리</a></li>
+	        		<li><a href="category.html?categoryName=beauty">뷰티 기타</a></li>
+	        	</ul>
+	        </li>
+	        <li><a href="category.html?categoryName=ect">기타</a></li>
+	      </ul>
+	    </li>
+	    <li>
+	      <a href="{% url 'notice:index' %}">공지사항</a>
+	        <ul>
+	        	<li><a href="{% url 'notice:index' %}">공지사항</a></li>
+	        	<li><a href="faq.html">FAQ</a></li>
+	        	<li><a href="{% url 'qna:index' %}">Q&amp;A</a>
+	        	</li>
+	        </ul>
+	    </li>
+	    <li>
+	      <a href="{% url 'mypage' %}">마이페이지</a>
+	      <ul>
+	        <li><a href="{% url 'mypage' %}">기본 정보</a></li>
+	        <li><a href="{% url 'enrol:index' %}">신청 내역</a></li>
+	        <li><a href="{% url 'qna:change' %}">문의 내역</a></li>
+	        <li><a href="{% url 'interest:index' %}">관심 내역</a></li>
+	        <li><a href="{% url 'reply:index' %}">댓글 내역</a></li>
+	        <li><a href="#">(강사)클래스 등록</a></li>
+	        <li><a href="#">(강사)클래스 등록 내역</a></li>
+	        <li><a href="#">(강사)수강생 관리</a></li>
+	        <li><a href="#">(강사)결제 관리</a></li>
+	      </ul>
+	    </li>
+	    <li>
+	      <a href="#">접속</a>
+	      <ul>
+	        <li><a href="{% url 'accounts:login' %}">로그인</a></li>
+	        <li><a href="{% url 'accounts:signup' %}">회원가입</a></li>
+	      </ul>
+	    </li>
+	  </ul>
+	</div>
+
+
+	</article>
+{% endblock %}    

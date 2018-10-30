@@ -1,0 +1,179 @@
+{% extends "accounts/mypage_base.html" %}
+
+{% block title %}course_change_form{% endblock %}
+
+{% load staticfiles %}
+
+{% block mypage %}
+<link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/hobbyist.css">
+    <title>회원가입</title>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <style type="text/css">
+        .btn-primary {
+            color: #ffaaaa;
+            background-color: #fff;
+            border-color: #ffaaaa;
+        }
+        .btn-primary:hover, .btn-primary:focus, .btn-primary.focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
+            color: #fff;
+            background-color: #ffaaaa;
+            border-color: #ffaaaa;
+        }
+
+        .form-control, .textarea {
+            display: block;
+            width: 100%;
+            height: 34px;
+            padding: 6px 12px;
+            font-size: 14px;
+            line-height: 1.42857143;
+            color: #555;
+            background-color: #fff;
+            background-image: none;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+            -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+            -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+            transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+        }
+    </style>
+<!-- sidemenu -->
+    <style type="text/css">
+        @import url(http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css);
+        .fa-fw {
+            width: 2em;
+        }
+        .container {
+            margin-left: 10px;
+        }
+        .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+            background-color: #fff;
+            color: #ffaaaa;
+            font-weight: bold;
+        }
+    </style>
+    <!-- pagination -->
+    <style type="text/css">
+        .pagination>li>a, .pagination>li>span { border-radius: 50% !important;margin: 0 5px;}
+    </style>
+    
+<!-- siedmenu -->
+<!-- <div class="container">
+    <div class="row"> -->
+        
+<div class="col-md-9 well" style="background-color: #fff;">
+            <!-- <div class="container"> -->
+                    {% if form.is_multipart %}
+                    <form enctype="multipart/form-data" method="post" action="." style="text-align: center;">
+                    {% else %}
+                    <form method="post" action="." style="text-align: center;">
+                    {% endif %}
+{% csrf_token %}
+
+{% if form.errors %}
+<p class="errornote">Wrong! Please correct the error(s) below.</p>
+{% endif %}
+{% if formset.errors %}
+<p class="errornote">Wrong! Please correct the FORMSET error(s) below.</p>
+{% endif %}
+
+
+<fieldset class="table table-border" style="text-align: center;">
+        <table class="table table-border table-hover" style="text-align: center;">
+        <thead>
+        <tr>
+        <th colspan="6" style="text-align: center;"><h4>클래스 등록 수정</h4></th>
+        </tr>
+        </thead>
+    <tbody>
+    
+    <tr>
+        <div class="form-row">
+        <td style="width: 110px;"><h5>클래스명</h5></td>
+        <td colspan="3"><input class="form-control" type="text" id="cname" name="cname" placeholder="등록할 클래스의 이름을 입력해주세요." {{ form.cname }} </td>
+        </div>
+    </tr>
+    
+    <tr>
+        <div class="form-row">
+        <td style="width: 110px;"><h5>가격</h5></td>
+        <td colspan="3"><input class="form-control" type="text" id="cost" name="cost" placeholder="등록할 클래스의 가격을 입력해주세요." {{ form.cost }} </td>
+        </div>
+    </tr>
+
+    <tr>
+    <td style="width: 110px;"><h5>기간</h5></td>
+    <td colspan="2"><input class="form-control" type="text" id="startdate" name="startdate" 
+        placeholder="시작 날짜를 입력해주세요. ex)2018-06-01" {{ form.startdate }} </td>
+    <td style="width: 45%;"><input class="form-control" type="text" id="enddate" name="enddate"
+        placeholder="종료 날짜를 입력해주세요. ex)2018-06-30" {{ form.enddate }}</td>
+    </tr>
+
+    {{ formset.management_form }}
+    {% for form in formset %}
+        {{ form.id }}
+    <tr>
+        <td style="width: 110px;"><h5>시간</h5></td>
+        <td colspan="2"><input class="form-control" type="text" placeholder="시작 시간 입력해주세요." {{ form.starttime }} </td>
+        <td style="width: 20%;"><input class="form-control" type="text" placeholder="종료 시간 입력해주세요." {{ form.endtime }}</td>
+    </tr>
+    {% endfor %}
+
+    <tr>
+            <td style="width: 110px;"><h5>분류</h5></td>
+            <td colspan="3"><div class="container-fluid">
+                <select class="form-control" style="width: 200px; margin: 0 auto;" {{ form.sfield }} </select></div>
+            </td>
+        </tr>
+    
+    <tr>
+    <td style="width: 110px;"><h5>정원</h5></td>
+    <td colspan="2"><input class="form-control" type="text" id="minperson" name="minperson" 
+        placeholder="최소 인원을 입력해주세요." {{ form.minperson }} </td>
+    <td style="width: 20%;"><input class="form-control" type="text" id="maxperson" name="maxperson" 
+        placeholder="최대 인원을 입력해주세요." {{ form.maxperson }}</td>
+    </tr>
+
+    <tr>
+    <td style="width: 110px;"><h5>장소</h5></td>
+    <td colspan="3"><input class="form-control" type="text" id="place" name="place"
+        placeholder="클래스의 위치를 입력해주세요." {{ form.place }} </td>
+    </tr>
+
+    <tr>
+    <td style="width: 110px;"><h5>사진 등록</h5></td>
+    <td colspan="3">{{ form.image }} </td>
+    </tr>
+
+    {{ gallery_formset.management_form }}
+    {% for form in gallery_formset %}
+        {{ form.id }}
+        <tr>
+            <td style="width: 110px;"><h5>갤러리 사진 등록</h5></td>
+            <td colspan="3">{{ form.image1 }} {{ form.image2 }} {{ form.image3 }} {{ form.image4 }}</td>
+        </tr>
+    {% endfor %}
+
+    <tr>
+    <td style="width: 110px;"><h5>상세정보</h5></td>
+    <td colspan="3"><textarea class="textarea" placeholder="내용을 입력해주세요."style="width: 100%; height: 200px;" {{ form.details }} </textarea></td>
+    </tr>
+    
+</tbody>
+</table>
+</fieldset>
+
+<input class="btn btn-primary form-control" style="width: 20%;" type="submit" name="수정하기" value="수정하기">
+<a class="pull-right" href="{% url 'course:change' %}" role=button>취소</a>
+
+<script type="text/javascript">document.getElementById('id_cname').focus();</script>
+</form>
+
+</div>
+</div>
+</div>
+{% endblock %}

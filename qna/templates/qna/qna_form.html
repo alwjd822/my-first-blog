@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block title %}qna_form{% endblock %}
+
+{% load staticfiles %}
+<!-- {% block extrastyle %}{% static "css/forms.css" %}{% endblock %} -->
+
+{% block content %}
+<link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/hobbyist.css">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <style type="text/css">
+        .btn-primary {
+            color: #ffaaaa;
+            background-color: #fff;
+            border-color: #ffaaaa;
+        }
+        .btn-primary:hover, .btn-primary:focus, .btn-primary.focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
+            color: #fff;
+            background-color: #ffaaaa;
+            border-color: #ffaaaa;
+        }
+
+        .form-control, .textarea {
+            display: block;
+            width: 100%;
+            height: 34px;
+            padding: 6px 12px;
+            font-size: 14px;
+            line-height: 1.42857143;
+            color: #555;
+            background-color: #fff;
+            background-image: none;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+            -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+            -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+            transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+        }
+    </style>
+
+
+<div class="container">
+
+    <!-- <h1> QNA 문의사항 {{user}}</h1> -->
+
+    <form action="#" method="post">{% csrf_token %}
+
+    {% if form.errors %}
+    <p class="errornote">Wrong! Please correct the error(s) below.</p>
+    {% endif %}
+
+
+    <fieldset class="table table-border" style="text-align: center;">
+        <thead>
+                    <tr>
+                        <th colspan="3" style="text-align: center;"><h4>Q&A</h4></th>
+                    </tr>
+                </thead>
+
+       <!--  <div class="form-row">
+            {{ form.title.label_tag }} {{ form.title }}
+        </div> -->
+        <div class="form-row">
+        <P><td colspan="2"><input class="form-control" type="text" id="title" name="title" maxlength="30" placeholder="제목을 입력해주세요." {{ form.title }}</td></P>
+        </div>
+    
+        <div class="form-row">
+            <!-- {{ form.tag.label_tag }} --> 
+            <td><textarea class="textarea" style="width: 100%; height: 300px;" placeholder="내용을 입력해주세요." {{ form.details }}</textarea>
+            </td>
+        </div>
+
+    </fieldset>
+
+    <!-- <div class="submit-row">
+        <input type="submit" value="Submit"/>
+    </div> -->
+    <tr>
+        <td style="text-align: left;" colspan="3"><input class="btn btn-primary pull-right" type="submit" name="문의하기" value="문의하기"></td>
+    </tr>
+    
+    <script type="text/javascript">document.getElementById('id_title').focus();</script>
+    </form>
+
+</div>
+{% endblock %}

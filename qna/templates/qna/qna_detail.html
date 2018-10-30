@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}qna_detail{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="col-md-12">
+    
+        <h4>{{ qna.title }}</h4><br>
+        <p>{{ qna.details }}<br></p>
+    
+        <span class="badge">수정일자 {{ qna.modifydate }}</span>
+        <span class="label label-default pull-right">
+            <a href="{% url 'qna:index' %}" style="color: white;">목록</a>
+        </span>
+    
+        <br/><br/>
+        <div>
+            {% load disqus_tags %}
+            {% disqus_show_comments %}
+        </div>
+    
+    </div>
+    </div>
+{% endblock %}

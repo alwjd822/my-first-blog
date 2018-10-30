@@ -1,0 +1,23 @@
+{% extends "accounts/mypage_base.html" %}
+
+{% block title %}profile_confirm_delete{% endblock %}
+
+{% block mypage %}
+<!-- <div class="container">
+<div class="row">  -->
+<div class="col-md-9 well" style="background-color: #fff;">
+<div id="content">
+
+    <!--<h1>강사정보삭제</h1>-->
+
+    <form action="" method="post">{% csrf_token %}
+        <p>HOBBYIST를 탈퇴하시겠습니까?</p>
+        <input class="btn btn-default" type="submit" value="탈퇴" />
+        &nbsp;&nbsp;<a class="" href="{% url 'accounts:profile' %}" role=button>취소</a>
+    </form>
+
+</div>
+</div>
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}login_form{% endblock %}
+
+<!-- {% load staticfiles %} -->
+{% block content %}
+<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="css/hobbyist.css">
+	<title>로그인</title>
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script src="js/bootstrap.js"></script>
+	<style type="text/css">
+		.btn-primary {
+		    color: #ffaaaa;
+		    background-color: #fff;
+		    border-color: #ffaaaa;
+		    
+		} 
+		.btn-primary:hover, .btn-primary:focus, .btn-primary.focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
+		    color: #fff;
+		    background-color: #ffaaaa;
+		    border-color: #ffaaaa;
+		}
+		.jumbotron{
+			background-color: #fff;
+		}
+	</style>
+<div class="container">
+<form action="" method="post" style="text-align: center;">
+	{% csrf_token %}
+	<table>
+		<div class="form-row" style="display: block;">
+            아이디<br>{{ form.username }}
+        </div>
+    
+        <div class="form-row" style="display: block;">
+            비밀번호<br>{{ form.password }}
+        </div> 
+	</table>
+	<br>
+	<input class="btn btn-primary form-control" style="width: 20%;" type="submit" name="로그인" value="로그인"><br><br>
+	<div class="form-group text-center">
+						<a href="#" tabindex="5" class="forgot-password">&nbsp;비밀번호 찾기&nbsp;&nbsp;</a><a href="{% url 'accounts:signup' %}" tabindex="5" class="register">&nbsp;&nbsp;회원가입&nbsp;&nbsp;</a>
+					</div>
+</form>
+</div>
+{% endblock %}

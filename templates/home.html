@@ -1,0 +1,213 @@
+{% extends "base.html" %}
+
+{% block title %}home.html{% endblock %}
+
+{% load staticfiles %}
+{% block extrastyle %}{% static "css/home.css" %}{% endblock %}
+
+	{% block content %}
+	
+	<!-- <div class="container">
+		<div class="jumbotron">
+			<h1 class="text-center">취미 그 이상, 하비스트</h1>
+			<p class="text-center">원데이클래스 모음</p>
+			<p class="text-center"><a class="btn btn-primary btn-lg" href="#" role="button">바로가기</a></p>
+		</div> -->
+		<div id="myCarousel" class="carousel slide" data-ride="carousel"> 
+		
+		<!--페이지-->
+		<ol class="carousel-indicators">
+			<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+			<li data-target="#myCarousel" data-slide-to="1"></li>
+			<li data-target="#myCarousel" data-slide-to="2"></li>
+		</ol>
+		<!--페이지-->
+
+		<div class="carousel-inner">
+			<!--슬라이드1-->
+			<div class="item active"> 
+				<img src="{% static 'img/banner1-.jpg' %}" style="width: 100%;" alt="First slide">
+				<div class="container">
+					<div class="carousel-caption">
+						<h1>HOBBYIST</h1>
+						<p>취미 그 이상, 하비스트</p>
+					</div>
+				</div>
+			</div>
+			<!--슬라이드1-->
+
+			<!--슬라이드2-->
+			<div class="item"> 
+				<img src="{% static 'img/banner2-.jpg' %}" style="width:100%" data-src="" alt="Second slide">
+				<div class="container">
+					<div class="carousel-caption">
+						<!-- <h1>Slide 2</h1>
+						<p>텍스트 2</p> -->
+					</div>
+				</div>
+			</div>
+			<!--슬라이드2-->
+			
+			<!--슬라이드3-->
+			<div class="item"> 
+				<img src="{% static 'img/banner3-.jpg' %}" style="width:100%" data-src="" alt="Third slide">
+				<div class="container">
+					<div class="carousel-caption">
+						<!-- <h1>Slide 3</h1>
+						<p>텍스트 3</p> -->
+					</div>
+				</div>
+			</div>
+			<!--슬라이드3-->
+		</div>
+		
+		<!--이전, 다음 버튼-->
+		<a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a> 
+		<a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a> 
+	</div>
+
+		<hr>
+		<!-- grid -->
+		<h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;주간 인기 클래스</h4>
+		<section class="new-demo">
+			<div class="container">	 
+			   			<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+						<ul class="demoFirst effect" style="list-style: none;">
+							<li>
+							   <h2 class="zero">beauty</h2>
+							   <p class="zero"><a href="category.html?categoryName=beauty" style="color: #fff;">혼자서도 쉽게! 셀프네일~</a></p>
+							</li>
+							<li><img class="top" src="{% static 'img/beauty2.jpg' %}" alt=""/></li>
+						</ul>
+						</div>
+						<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+						<ul class="demoFirst effect" style="list-style: none;">
+							<li>
+							   <h2 class="zero">music</h2>
+							   <p class="zero">악보 보는 법부터 차근차근</p>
+							</li>
+							<li><img class="top" src="{% static 'img/music2.jpg' %}" alt=""/></li>
+						</ul>
+						</div>
+						<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+						<ul class="demoFirst effect" style="list-style: none;">
+							<li>
+							   <h2 class="zero">sports</h2>
+							   <p class="zero">공이랑 친해지기</p>
+							</li>
+							<li><img class="top" src="{% static 'img/sports2.jpg' %}" alt=""/></li>
+						</ul>
+						</div>
+						<br>
+						<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+						<ul class="demoFirst effect" style="list-style: none;">
+							<li>
+							   <h2 class="zero">art</h2>
+							   <p class="zero">내 밥그릇은 내가 만든다!</p>
+							</li>
+							<li><img class="top" src="{% static 'img/art2.jpg' %}" alt=""/></li>
+						</ul>
+						</div>
+						<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+						<ul class="demoFirst effect" style="list-style: none;">
+							<li>
+							   <h2 class="zero">digital</h2>
+							   <p class="zero"><a href=""></a>대체 뭐라는 거야 에러 잡기</p>
+							</li>
+							<li><img class="top" src="{% static 'img/digital2.jpg' %}" alt=""/></li>
+						</ul>
+						</div>
+						<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+						<ul class="demoFirst effect" style="list-style: none;">
+							<li>
+							   <h2 class="zero">food</h2>
+							   <p class="zero">요즘 유행이라며? 나만의 homecafe</p>
+							</li>
+							<li><img class="top" src="{% static 'img/food2.jpg' %}" alt=""/></li>
+						</ul>
+						</div>
+						</div>
+						</section>			   			
+					<hr> 
+		<div class="row">
+			<div class="col-md-6">
+				<h4>인기 클래스</h4>
+				<p>조회수가 높은 클래스입니다</p>
+				<p><a class="btn btn-default" href="topclass.html">더보기</a></p>
+			</div>
+		<div class="row">
+			<div class="col-md-6">
+				<h4>최근 등록 클래스</h4>
+				<p>최근에 등록 된 클래스입니다</p>
+				<p><a class="btn btn-default" href="recentclass.html">더보기</a></p>
+			</div>
+		</div>
+	</div>
+	<hr>
+	<!-- grid2 -->
+	<h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;최근 등록 클래스</h4>
+	<section class="new-demo">
+			 <div class="container">
+			   			<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+						<ul class="demoFirst effect" style="list-style: none;">
+							<li>
+							   <h2 class="zero">beauty</h2>
+							   <p class="zero">나에게 맞는 립 컬러 찾기!</p>
+							</li>
+							<li><img class="top" src="{% static 'img/beauty1.jpg' %}" alt=""/></li>
+						</ul>
+						</div>
+						<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+						<ul class="demoFirst effect" style="list-style: none;">
+							<li>
+							   <h2 class="zero">music</h2>
+							   <p class="zero">피아노 같이 칠래?</p>
+							</li>
+							<li><img class="top" src="{% static 'img/music1.jpg' %}" alt=""/></li>
+						</ul>
+						</div>
+						<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+						<ul class="demoFirst effect" style="list-style: none;">
+							<li>
+							   <h2 class="zero">sports</h2>
+							   <p class="zero">어푸어푸 생존 수영</p>
+							</li>
+							<li><img class="top" src="{% static 'img/sports1.jpg' %}" alt=""/></li>
+						</ul>
+						</div>
+						<br>
+						<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+						<ul class="demoFirst effect" style="list-style: none;">
+							<li>
+							   <h2 class="zero">art</h2>
+							   <p class="zero">멋스러운 캘리그라피 배우기</p>
+							</li>
+							<li><img class="top" src="{% static 'img/art1.jpg' %}" alt=""/></li>
+						</ul>
+						</div>
+						<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+						<ul class="demoFirst effect" style="list-style: none;">
+							<li>
+							   <h2 class="zero">digital</h2>
+							   <p class="zero"><a href=""></a> 사진 구도 어렵지 않아요!</p>
+							</li>
+							<li><img class="top" src="{% static 'img/digital1.jpg' %}" alt=""/></li>
+						</ul>
+						</div>
+						<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+						<ul class="demoFirst effect" style="list-style: none;">
+							<li>
+							   <h2 class="zero">food</h2>
+							   <p class="zero">파스타, 건강하게 먹자!</p>
+							</li>
+							<li><img class="top" src="{% static 'img/food1.jpg' %}" alt=""/></li>
+						</ul>
+						</div>
+						</div>
+						</section>
+</div>
+					</div> 
+	<hr>
+	{% endblock content %}
+
+	

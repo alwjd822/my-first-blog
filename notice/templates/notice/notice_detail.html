@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}notice_detail.html{% endblock %}
+
+{% block content %}	
+<!-- 공지상세 -->
+<div class="container">
+<div class="col-md-12">
+    <h4>{{ notice.nname }}</h4><br>
+    <p>{{ notice.ndetails }}<br></p>
+    <div>
+    <span class="badge">Posted {{ notice.published_date }}</span>
+    <div class="pull-right"><span class="label label-default"><a href="{% url 'notice:index' %}" style="color: white;">목록</a></span>
+    </div>         
+</div>
+</div>
+{% endblock %}

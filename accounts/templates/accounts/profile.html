@@ -1,0 +1,42 @@
+{% extends "accounts/mypage_base.html" %}
+
+{% block title %}mypage.html{% endblock %}
+{% load staticfiles %}
+{% block mypage %}
+<!-- siedmenu -->
+	<!-- <div class="container">
+	    <div class="row"> -->
+	        <div class="col-md-10 well" style="background-color: #fff;">
+				<form method="POST">
+					<!-- Vertical admin menu -->
+	            <p><strong>아이디 : </strong>{{ user }}</p>
+	            <p><strong><a href="{% url 'password_change' %}" role=button>비밀번호 변경</a></strong></p>
+				<p><strong>이름 : </strong>{{ user.profile.name }}</p>
+				<!-- <p><strong>성별 : </strong> 여자</p> -->
+				<p><strong>전화번호 : </strong> {{ user.profile.tel }} </p>
+				<p><strong>주소 : </strong> {{ user.profile.address }} </p>
+				<p><strong>생년월일 : </strong> {{ user.profile.birth }} </p><br>
+				<p>
+					{% if user.profile.lecturer %}
+					<a href="{% url 'lecturer:update' user.profile.lecturer.id %}" class="btn btn-default" role=button>강사정보변경</a>
+					
+					{% elif messages %}
+						<a href="#" class="btn btn-default" role=button>강사신청완료</a>
+						<div class="alert alert-success">
+							{% for m in messages %}
+							<li>{{ m }}</li>
+							{% endfor %}
+						</div>
+
+					{% else %}
+					<a href="{% url 'lecturer:new' %}" class="btn btn-default" role=button>강사신청</a>
+					
+					{% endif %}
+					<a href="{% url 'accounts:profile_edit'  user.profile.id  %}" class="btn btn-default pull-right" role=button>수정하기</a>
+				</p>
+				</form>
+	        </div>  
+	    </div>
+	</div>
+
+{% endblock mypage %}

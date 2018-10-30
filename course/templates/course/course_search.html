@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block title %}course_list.html{% endblock %}
+{% load staticfiles %}
+{% block content %}
+<style> 
+    input[type=text] {
+        width: 275px;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+        background-color: white;
+        background-image: url('https://images.vexels.com/media/users/3/132068/isolated/preview/f9bb81e576c1a361c61a8c08945b2c48-search-icon-by-vexels.png');
+        background-size: 22px 22px;
+        background-position: 10px 10px; 
+        background-repeat: no-repeat;
+        padding: 12px 20px 12px 40px;
+        -webkit-transition: width 0.4s ease-in-out;
+        transition: width 0.4s ease-in-out;
+    }
+
+    input[type=text]:focus {
+        width: 100%;
+    }
+    </style>
+
+     <div class="container-fluid">
+        <h3 class="htitle">전체 클래스
+        <select class="form-control pull-right" name="sort-select" id="sort-select" onchange="location = this.value;" required style="width: 120px;"> 
+            <!-- <option value="">정렬></option> -->
+            <option value="filter1">인기순 정렬</option>
+            <option class="sort-date" value="?">최신순 정렬</option>
+            {% if user.is_authenticated %}
+            <option class="sort-mypost" value="?sort=mypost">내가쓴글 정렬</option>
+            {% endif %}
+            <br>
+        </select>
+    </h3>
+        <hr>
+        <p>
+            <form action="" method="get">{% csrf_token %}
+                <input type="text" name="q" placeholder="검색어를 입력해주세요." value="{{ q }}" />
+                <!-- <input type="submit" value="검색" /> -->
+            </form>
+        </p>
+        {% if object_list %}
+        <div class=bs-example data-example-id=thumbnails-with-custom-content > 
+            <div class=row> 
+                {% for post in object_list %}
+                <div class="col-sm-4 col-md-3"> 
+                    <div class=thumbnail> <img src="{{ post.image.thumb_url }}" >
+                     
+                        <div class=caption> 
+                            <h4>{{ post.cname }}</h4> 
+                            <br>
+                            <p>강사명; {{ post.name }}</p> 
+                            <p>장소; {{ post.place }}</p>
+                            <p>가격; {{ post.cost }}원</p>
+                            <p><br>
+                                <a href="{% url 'lecturer:lecturer' course.id %}" class="btn btn-primary" role=button>강사소개</a>
+                                <a href="{% url 'course:course_detail' course.id %}" class="btn btn-default" role=button>자세히</a>
+                            </p> 
+                        </div> 
+                        
+                    </div> 
+                </div>
+                {% endfor %} 
+            </div>
+
+            {% elif search_word %}
+            <b><i>Search Word({{ search_word }}) Not Found !</i></b>
+            {% endif %}
+
+            <div class="text-center">
+                <ul class="pagination">
+                            {% if is_paginated %}
+                            {% if page_obj.has_previous %}
+                            <li><a href="?page={{ page_obj.previous_page_number }}">이전</a></li>
+                            {% endif %}
+                            <li><a>{{ page_obj.number }}페이지</a></li>
+                            {% if page_obj.has_next %}
+                            <li><a href="?page={{ page_obj.next_page_number }}">다음</a></li>
+                            {% endif %}
+                        {% endif %}
+                </ul>
+            </div>
+        </div>       
+    </div>
+{% endblock %}    

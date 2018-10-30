@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}enrol_form{% endblock %}
+{% load staticfiles %}
+{% block content %}
+
+{% if form.is_multipart %}
+<form enctype="multipart/form-data" method="post" action="." style="text-align: center;">
+{% else %}
+<form method="post" action="." style="text-align: center;">
+{% endif %}
+
+{% csrf_token %}
+<!-- 신청 -->
+<div class="text" align="center"><br><br>
+	{% for course in form %}
+	<p><strong>클래스 이름; </strong><br>{{ course.cname }}</p><br>
+	{% endfor %}
+	<p><strong>비용; </strong><br></p><br>
+	<p><strong>날짜 및 시간; </strong><br>2018-05-14 13:00</p><br>
+	<p><strong>결제수단; {{ form.paymethod }}</strong></p>
+  	<br>
+	<br>
+	<a href="/course/?next={{request.path}}" class="btn btn-default" role=button> 취소 </a>
+	<!--<a href="{% url 'enrol:index' %}" class="btn btn-primary" role=button>결제</a>-->
+	<input class="btn btn-primary" type="submit" name="결제" value="결제">
+</div>
+{% endblock %}

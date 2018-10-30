@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% block content %}
+<link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.30/css/uikit.min.css'>
+
+<style type="text/css">
+		@import url(http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css);
+		.fa-fw {
+			width: 2em;
+		}
+		.container {
+			margin-left: 10px;
+		}
+		.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+			background-color: #fff;
+			color: #ffaaaa;
+			font-weight: bold;
+		}
+
+		.uk-link, a {
+			color: black;
+		}
+		.pagination>li>a, .pagination>li>span { border-radius: 50% !important;margin: 0 5px;}
+	</style>
+	
+<!-- siedmenu -->
+	<div class="container">
+	    <div class="row">
+	        <div class="col-md-2">
+	            <ul class="nav nav-pills nav-stacked">
+					{% if not user.profile.lecturer %}
+	                <li class="active"><a href="{% url 'accounts:profile' %}"><i class="fa fa-cogs fa-fw"></i>기본 정보</a></li>
+	                <li><a href="{% url 'enrol:index' %}"><i class="fa fa-list-alt fa-fw"></i>신청 내역</a></li>
+	                <li><a href="{% url 'qna:change' %}"><i class="fa fa-file-o fa-fw"></i>문의 내역</a></li>
+	                <li><a href="{% url 'course:likes' %}"><i class="fa fa-bar-chart-o fa-fw"></i>관심 내역</a></li>
+					{% else %}
+					<li class="active"><a href="{% url 'accounts:profile' %}"><i class="fa fa-cogs fa-fw"></i>기본 정보</a></li>
+	                <li><a href="{% url 'enrol:index' %}"><i class="fa fa-list-alt fa-fw"></i>신청 내역</a></li>
+	                <li><a href="{% url 'qna:change' %}"><i class="fa fa-file-o fa-fw"></i>문의 내역</a></li>
+	                <li><a href="{% url 'course:likes' %}"><i class="fa fa-bar-chart-o fa-fw"></i>관심 내역</a></li>
+					<li><a href="{% url 'course:add' %}"><i class="fa fa-tasks fa-fw"></i>클래스 등록</a></li>
+	                <li><a href="{% url 'course:change' %}"><i class="fa fa-calendar fa-fw"></i>클래스 등록 내역</a></li>
+	                <li><a href="{% url 'enrol:enrol_student' %}"><i class="fa fa-book fa-fw"></i>수강생 관리</a></li>
+					<li><a href="#"><i class="fa fa-pencil fa-fw"></i>결제 관리</a></li>
+					{% endif %}
+	            </ul>
+	        </div> 
+			{% block mypage %}{% endblock mypage %}
+	    </div>
+	</div>
+	{% endblock content %}
+	

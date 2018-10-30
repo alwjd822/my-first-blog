@@ -1,0 +1,114 @@
+{% extends "accounts/mypage_base.html" %}
+{% block title %}lecturer_form{% endblock %}
+{% load staticfiles %}
+{% block mypage %}
+<title>강사신청</title>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src='{% static "js/bootstrap.js" %}'></script>
+    <style type="text/css">
+        .btn-primary {
+            color: #ffaaaa;
+            background-color: #fff;
+            border-color: #ffaaaa;
+        }
+        .btn-primary:hover, .btn-primary:focus, .btn-primary.focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
+            color: #fff;
+            background-color: #ffaaaa;
+            border-color: #ffaaaa;
+        }
+        .textarea {
+            display: block;
+            width: 100%;
+            height: 34px;
+            padding: 6px 12px;
+            font-size: 14px;
+            line-height: 1.42857143;
+            color: #555;
+            background-color: #fff;
+            background-image: none;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+            -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+            -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+            transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+        }
+    </style>
+
+<!-- <div class="container">
+<div class="row">    -->
+<div class="col-md-9 well" style="background-color: #fff;">
+
+    {% if form.is_multipart %}
+    <form enctype="multipart/form-data" method="post" action="." style="text-align: center;">
+    {% else %}
+    <form method="post" action="." style="text-align: center;">
+    {% endif %}
+
+    {% if form.errors %}
+<p class="errornote">Wrong! Please correct the error(s) below.</p>
+{% endif %}
+
+    
+
+    {% csrf_token %} 
+    
+        <fieldset class="table table-border" style="text-align: center;">
+        <table class="table table-border table-hover" style="text-align: center;">
+
+        <thead>
+            <tr>
+                <th colspan="6" style="text-align: center;"><h4>강사 신청</h4></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td style="width: 200px;"><h5>은행명</h5></td>
+                <td colspan="2"><input class="form-control" type="text" id="bank" name="bank" placeholder="은행명"{{ form.bank }}</td>
+            </tr>
+        
+            <tr>
+                <td style="width: 200px;"><h5>계좌번호</h5></td>
+                <td colspan="2"><input class="form-control" type="text" id="account" name="account" 
+                    placeholder="계좌번호를 입력해주세요."{{ form.account }}</td>
+            </tr>
+
+            <tr>
+                <td style="width: 200px;"><h5>프로필 사진</h5></td>
+                <td colspan="3">수강생분들에게 신뢰감을 높이기 위해 얼굴이 나온 사진은 필수 입니다.
+                <br><a class="pull-right"> {{ form.profilephoto }}</a></td>
+            </tr>
+                
+            <tr>
+                <td style="width: 200px;"><h5>신분증 인증</h5></td>
+                <td colspan="3">본인 확인을 위해 이름과 주민등록번호 앞자리를 제외한 나머지 부분을 가려주세요.
+                <br><a class="pull-right"> {{ form.idphoto }}</a></td>
+            </tr>
+
+            <tr>
+                <td style="width: 200px;"><h5>경력 사항</h5></td>
+                <td colspan="3"><textarea class="textarea" style="width: 100%; height: 200px;"
+                    placeholder="본인의 경력을 입력해주세요. ex) A학원 강사 n년, 개인 스튜디오 운영 등"{{ form.career }}</textarea></td>
+            </tr>
+                
+            <tr>
+                <td style="width: 200px;"><h5>관련 자격증</h5></td>
+                <td colspan="3"><textarea class="textarea" style="width: 100%; height: 200px;"
+                    placeholder="자격증명을 입력해주세요."{{ form.certification }}</textarea></td>
+            </tr>
+        
+        </tbody>
+        </table>
+        </fieldset>
+
+        <input class="btn btn-primary form-control" style="width: 20%;" type="submit" name="신청하기" value="신청하기">
+        <a class="pull-right" href="{% url 'accounts:profile' %}" role=button>취소</a>
+
+        <script type="text/javascript">document.getElementById('id_name').focus();</script>
+    </form>
+</div>
+</div>
+</div>
+{% endblock %}

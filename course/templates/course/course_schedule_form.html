@@ -1,0 +1,116 @@
+{% extends "accounts/mypage_base.html" %}
+
+{% block title %}course_schedule_form{% endblock %}
+
+{% load staticfiles %}
+<!-- {% block extrastyle %}{% static "css/forms.css" %}{% endblock %} -->
+
+{% block mypage %}
+<link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/hobbyist.css">
+    <title>회원가입</title>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <style type="text/css">
+        .btn-primary {
+            color: #ffaaaa;
+            background-color: #fff;
+            border-color: #ffaaaa;
+        }
+        .btn-primary:hover, .btn-primary:focus, .btn-primary.focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
+            color: #fff;
+            background-color: #ffaaaa;
+            border-color: #ffaaaa;
+        }
+
+        .form-control, .textarea {
+            display: block;
+            width: 100%;
+            height: 34px;
+            padding: 6px 12px;
+            font-size: 14px;
+            line-height: 1.42857143;
+            color: #555;
+            background-color: #fff;
+            background-image: none;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+            -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+            -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+            transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+        }
+    </style>
+<!-- sidemenu -->
+    <style type="text/css">
+        @import url(http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css);
+        .fa-fw {
+            width: 2em;
+        }
+        .container {
+            margin-left: 10px;
+        }
+        .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+            background-color: #fff;
+            color: #ffaaaa;
+            font-weight: bold;
+        }
+    </style>
+    <!-- pagination -->
+    <style type="text/css">
+        .pagination>li>a, .pagination>li>span { border-radius: 50% !important;margin: 0 5px;}
+    </style>
+    
+<!-- siedmenu -->
+    <!-- <div class="container">
+        <div class="row"> -->
+            
+<div class="col-md-9 well" style="background-color: #fff;">
+                <!-- <div class="container"> -->
+    {% if form.is_multipart %}
+    <form enctype="multipart/form-data" method="post" action=".">
+    {% else %}
+    <form method="post" action=".">
+    {% endif %}
+    {% csrf_token %}
+
+    {% if form.errors %}
+    <p class="errornote">Wrong! Please correct the error(s) below.</p>
+    {% endif %}
+
+    
+    <fieldset class="table<div class="col-md-12 well2">
+        <form method="post" action="#">
+        <table class="table table-border table-hover" style="text-align: center;">
+            <thead>
+            <tr>
+            <th colspan="6" style="text-align: center;"><h4>클래스 일정 등록</h4></th>
+            </tr>
+            </thead>
+        <tbody>
+
+                <tr>
+                        <td style="width: 110px;"><h5>시간</h5></td>
+                        <td colspan="2">{{ form.course }} </td>
+                        </tr>
+
+        <tr>
+        <td style="width: 110px;"><h5>시간</h5></td>
+        <td colspan="2"><input class="form-control" type="text" id="starttime" name="starttime" 
+            placeholder="시작 날짜를 입력해주세요. ex)2018-06-01" {{ form.starttime }} </td>
+        <td style="width: 45%;"><input class="form-control" type="text" id="endtime" name="endtime"
+            placeholder="종료 날짜를 입력해주세요. ex)2018-06-30" {{ form.endtime }}</td>
+        </tr>
+
+        <tr>
+        <td style="text-align: left;" colspan="4"><input class="btn btn-primary pull-right" type="submit" name="신청하기" value="신청하기"></td>
+        </tr>
+    </tbody>
+    </table>
+    
+    <script type="text/javascript">document.getElementById('id_cname').focus();</script>
+    </form>
+
+</div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "accounts/mypage_base.html" %}
+
+{% block title %}qna_confirm_delete{% endblock %}
+
+{% block mypage %}
+<div class="container">
+	<div class="row">
+            
+<div class="col-md-9 well" style="background-color: #fff;">
+<div id="content">
+
+    <h1>Post Delete</h1>
+
+    <form action="" method="post">{% csrf_token %}
+        <p>Are you sure you want to delete "{{ object }}" ?</p>
+        <input type="submit" value="Confirm" />
+    </form>
+
+</div>
+</div>
+</div>
+</div>
+{% endblock %}
